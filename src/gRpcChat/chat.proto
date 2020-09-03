@@ -1,0 +1,32 @@
+﻿syntax = "proto3";
+
+package GrpcChat;
+
+service Chat {
+  rpc Join (ChatRequest) returns (ChatResponse);
+  rpc Send (ChatMessage) returns (ChatMessageResponse);
+  rpc Listen (ChatRequest) returns (stream ChatMessage);
+  rpc Exit (ChatRequest) returns (ChatResponse);
+}
+
+message ChatRequest {
+  string name = 1;
+}
+
+message ChatResponse {
+  string name = 1;
+  bool status = 2;
+}
+
+message ChatMessage {
+  string name = 1;
+  string message = 2;
+  string timestamp=3;
+}
+
+message ChatMessageResponse {
+  string name = 1;
+  string message = 2;
+  string timestamp=3;
+  bool status = 4;
+}
